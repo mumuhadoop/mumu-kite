@@ -109,7 +109,7 @@ public class KitePartitionOperation {
 
         DatasetWriter<BaseUserEntity> datasetWriter = genericRecordView.getDataset().newWriter();
         Random random = new Random();
-        for (int i = 1; i <= 1000000; i++) {
+        for (int i = 1; i <= 100; i++) {
             BaseUserEntity baseUserEntity = new BaseUserEntity();
             baseUserEntity.setUsername("lovecws" + i);
             baseUserEntity.setUserpassword("123456");

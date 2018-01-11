@@ -23,6 +23,6 @@ public class KiteFileDatasetOperationTest {
 
     @Test
     public void createDatePartition() {
-        new KitePartitionOperation().createDatePartition(KiteConfiguration.LOCAL() + "datepartitiondataset");
+        new KitePartitionOperation().createDatePartition(KiteConfiguration.LOCAL() + "datepartitiondataset2");
     }
 }
