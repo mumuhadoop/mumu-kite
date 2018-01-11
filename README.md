@@ -10,11 +10,11 @@ mumu-kite是一个demo项目，主要通过这个项目来了解kite到底是干
 
 Scheme | Pattern | Pattern2
 ---|--- | ---
-Hive | dataset:hive:<namespace>/<dataset> | dataset:hive:/<path>/<namespace>/<dataset-name>
-HDFS | dataset:hdfs:/<path>/<namespace>/<dataset-name> |
-S3 | dataset:s3a://<bucket>/<namespace>/<dataset-name>|dataset:s3n://<bucket>/<path>/<namespace>/<dataset-name>
-Local FS | dataset:file:/<path>/<namespace>/<dataset-name> |
-HBase | dataset:hbase:<zookeeper>/<dataset-name> |
+Hive | dataset:hive:namespace/dataset |  dataset:hive:/path/namespace/dataset-name
+HDFS | dataset:hdfs:/path/namespace/dataset-name |
+S3 | dataset:s3a://bucket/namespace/dataset-name|dataset:s3n://bucket/path/namespace/dataset-name
+Local FS | dataset:file:/path/namespace/dataset-name | 
+HBase | dataset:hbase:zookeeper/dataset-name | 
 
 
 ## Parquet vs Avro Format

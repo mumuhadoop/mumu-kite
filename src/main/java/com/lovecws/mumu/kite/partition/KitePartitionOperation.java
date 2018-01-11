@@ -4,8 +4,12 @@ import com.lovecws.mumu.kite.entity.BaseUserEntity;
 import org.apache.avro.generic.GenericData;
 import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.generic.GenericRecordBuilder;
+import org.apache.commons.lang.time.DateUtils;
 import org.apache.log4j.Logger;
 import org.kitesdk.data.*;
+
+import java.util.Date;
+import java.util.Random;
 
 /**
  * @author babymm
@@ -84,6 +88,35 @@ public class KitePartitionOperation {
             genericRecord.put("age", i);
             genericRecord.put("sex", i % 2 == 0 ? "f" : "m");
             datasetWriter.write(genericRecord);
+        }
+        datasetWriter.close();
+    }
+
+    public void createDatePartition(String dataset) {
+        PartitionStrategy partitionStrategy = new PartitionStrategy
+                .Builder()
+                .year("createDate", "year")
+                .month("createDate", "month")
+                .day("createDate", "day")
+                .build();
+        DatasetDescriptor descriptor = new DatasetDescriptor.Builder()
+                .schema(BaseUserEntity.class)
+                .format(Formats.AVRO)
+                .partitionStrategy(partitionStrategy)
+                .build();
+        View<BaseUserEntity> genericRecordView = Datasets.create(dataset, descriptor, BaseUserEntity.class);
+        log.info(genericRecordView);
+
+        DatasetWriter<BaseUserEntity> datasetWriter = genericRecordView.getDataset().newWriter();
+        Random random = new Random();
+        for (int i = 1; i <= 1000000; i++) {
+            BaseUserEntity baseUserEntity = new BaseUserEntity();
+            baseUserEntity.setUsername("lovecws" + i);
+            baseUserEntity.setUserpassword("123456");
+            baseUserEntity.setSex(i % 2 == 0 ? "f" : "m");
+            baseUserEntity.setAge(i);
+            baseUserEntity.setCreateDate(DateUtils.addDays(new Date(), random.nextInt(10000)).getTime());
+            datasetWriter.write(baseUserEntity);
         }
         datasetWriter.close();
     }

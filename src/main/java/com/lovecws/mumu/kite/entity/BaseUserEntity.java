@@ -1,5 +1,7 @@
 package com.lovecws.mumu.kite.entity;
 
+import java.util.Date;
+
 /**
  * @author babymm
  * @version 1.0-SNAPSHOT
@@ -11,6 +13,7 @@ public class BaseUserEntity {
     private String userpassword;
     private int age;
     private String sex;
+    private long createDate;
 
     public String getUsername() {
         return username;
@@ -44,6 +47,14 @@ public class BaseUserEntity {
         this.sex = sex;
     }
 
+    public long getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(long createDate) {
+        this.createDate = createDate;
+    }
+
     @Override
     public String toString() {
         return "BaseUserEntity{" +
@@ -51,6 +62,7 @@ public class BaseUserEntity {
                 ", userpassword='" + userpassword + '\'' +
                 ", age=" + age +
                 ", sex='" + sex + '\'' +
+                ", createDate=" + createDate +
                 '}';
     }
 }
